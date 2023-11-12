@@ -1,0 +1,49 @@
+@model Cars
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>Araba Uygulaması</title>
+  </head>
+  <body>
+    <h2>Araç Ekleme Sayfası</h2>
+    <hr />
+    <form method="post" action="/Car/AddCar" novalidate>
+      <div asp-validation-summary="All"></div>
+      <div class="mb-3">
+        <label asp-for="Id" class="form-label">Id</label>
+        <input asp-for="Id" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label asp-for="Marka" class="form-label">Araç Markası</label>
+        <input asp-for="Marka" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label asp-for="Model" class="form-label">Araç Modeli</label>
+        <input asp-for="Model" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label asp-for="Yıl" class="form-label">Model Yılı</label>
+        <input asp-for="Yıl" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label asp-for="Motor" class="form-label">Motor Gücü</label>
+        <input asp-for="Motor" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label asp-for="Image" class="form-label">Resim Seçiniz</label>
+        <select asp-for="Image" class="form-select">
+          <option value="">Seçiniz</option>
+          <option value="passat.jpeg">Passat</option>
+          <option value="polo.jpeg">Polo</option>
+          <option value="symbol.jpeg">Symbol</option>
+          <option value="twizy.jpeg">Twizy</option>
+          <option value="sahin.jpeg">Sahin</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" type="submit">Kaydet</button>
+    </form>
+  </body>
+</html>

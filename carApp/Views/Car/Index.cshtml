@@ -1,0 +1,21 @@
+@model List<Cars>
+  <ul class="list-group">
+    @foreach(var cars in Model){
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-sm-4">
+          <img class="center" src="~/img/@cars.Image" alt=""/>
+        </div>
+        <div class="col-sm-6">
+            <h3 class="card-title">@cars.Marka</h3>
+            <p class="card-text">@cars.Model</p>
+          </div>
+          <div class="col-sm-2">
+            <a asp-controller="Car" asp-action="Detail" asp-route-id="@cars.Id" class="btn btn-primary">Detaylar</a>
+            </div>    
+      </div>
+    </li>
+    }
+  </ul>
+  <hr />
+<h6 align="right">@ViewBag.student'ın ödevidir.</h6>

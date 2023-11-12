@@ -1,0 +1,29 @@
+@model Cars
+<h2>Araç Detayları</h2>
+<hr />
+<div class="col-sm-4">
+  <img class="center" src="~/img/@Model.Image" alt="" />
+</div>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Marka</th>
+      <th scope="col">@Model.Marka</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Model</td>
+      <td>@Model.Model</td>
+    </tr>
+    <tr>
+      <td>Yılı</td>
+      <td>@Model.Yıl</td>
+    </tr>
+    <tr>
+      <td>Motor Gücü</td>
+      <td>@Model.Motor</td>
+    </tr>
+  </tbody>
+</table>
