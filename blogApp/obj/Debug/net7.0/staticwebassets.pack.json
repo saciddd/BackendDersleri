@@ -141,6 +141,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\BackendDersleri\\blogApp\\wwwroot\\img\\nazim.jpeg",
+      "PackagePath": "staticwebassets\\img\\nazim.jpeg"
+    },
+    {
+      "Id": "C:\\BackendDersleri\\blogApp\\wwwroot\\img\\nfk.png",
+      "PackagePath": "staticwebassets\\img\\nfk.png"
+    },
+    {
       "Id": "C:\\BackendDersleri\\blogApp\\wwwroot\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\js\\bootstrap.bundle.js"
     },

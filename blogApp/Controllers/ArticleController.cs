@@ -46,12 +46,12 @@ namespace blogApp.Controllers
         public async Task<IActionResult> Archive()
         {
             // Veritabanındaki tüm makaleleri al
-            var articles = await _context.Articles.ToListAsync();
+            var articles = await _context.Articles.Include(a => a.Category).Include(a => a.ArticleWriter).ToListAsync();
 
             // Makaleleri view'e gönder
             return View(articles);
         }
-[HttpGet]
+        [HttpGet]
         public IActionResult Article(int? id)
         {
             var article = _context.Articles
@@ -64,7 +64,7 @@ namespace blogApp.Controllers
                 return NotFound();
             }
 
-            return View("Article",article);
+            return View("Article", article);
         }
         public IActionResult Error()
         {

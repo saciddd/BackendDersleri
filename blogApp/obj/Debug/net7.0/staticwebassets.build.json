@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HOvSaVl8U2vd+9ADnEc9BWOutkEGN6+vWcnBulrztMU=",
+  "Hash": "D0O4GaofbuDpNnTExSkxbLorfiH9hgM6EadNbUVgAkg=",
   "Source": "blogApp",
   "BasePath": "_content/blogApp",
   "Mode": "Default",
@@ -627,6 +627,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\BackendDersleri\\blogApp\\wwwroot\\img\\nazim.jpeg",
+      "SourceId": "blogApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\BackendDersleri\\blogApp\\wwwroot\\",
+      "BasePath": "_content/blogApp",
+      "RelativePath": "img/nazim.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\nazim.jpeg"
+    },
+    {
+      "Identity": "C:\\BackendDersleri\\blogApp\\wwwroot\\img\\nfk.png",
+      "SourceId": "blogApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\BackendDersleri\\blogApp\\wwwroot\\",
+      "BasePath": "_content/blogApp",
+      "RelativePath": "img/nfk.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\nfk.png"
     },
     {
       "Identity": "C:\\BackendDersleri\\blogApp\\wwwroot\\js\\bootstrap.bundle.js",

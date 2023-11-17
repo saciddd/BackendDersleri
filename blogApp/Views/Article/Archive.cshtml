@@ -7,17 +7,29 @@
     <h3 class="display-4">Tüm Makaleler</h3>
     <hr />
     <div class="list-group">
-        @foreach (var Article in Model)
+        @foreach (var article in Model)
         {
-            <a href="/Article/Article/@Article.ArticleID" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">@Article.ArticleTitle</h5>
-                    <small>@Article.ArticlePublicationTime</small>
+            <a href="/Article/Article/@article.ArticleID"
+                class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img src="~/img/@article.ArticleImage" alt="Article Image" class="img-fluid">
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">@article.ArticleTitle</h5>
+                            <small>@article.ArticlePublicationTime</small>
+                        </div>
+                        <p class="mb-1">@article.ArticleContent.Substring(0, Math.Min(article.ArticleContent.Length, 200))...</p>
+                        <div class="text-sm-end">
+                        <span class="badge bg-secondary align4-end">@article.Category.CategoryName</span>
+                        <a href="/Article/Article/@article.ArticleID">Devamını Oku</a>
+                        <small>Yazar: @article.ArticleWriter.UserName</small>
+                        </div>
+                        <hr />
+                    </div>
                 </div>
-                <p class="mb-1">@Article.ArticleContent</p>
-                <small>@Article.ArticleWriter</small>
             </a>
         }
-        </a>
     </div>
 </div>
