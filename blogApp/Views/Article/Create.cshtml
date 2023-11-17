@@ -1,0 +1,32 @@
+@model Article
+<div class="text-center">
+    <h1 class="display-4">Makale Oluştur</h1>
+    <hr />
+</div>
+<div class="container>
+    <div class=" row justify-content-center">
+    <div class="card">
+        <div class="card-header">
+            Yeni Makale
+        </div>
+        <div class="card-body">
+            <!-- Giriş Formu -->
+            <form asp-controller="Article" asp-action="Create" method="post">
+                <div class="form-group">
+                    <label for="fileInput">Kapak Fotoğrafı Seç:</label>
+                    <input type="file" name="fileInput" id="fileInput" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label asp-for="ArticleTitle">Makale Başlığı:</label>
+                    <input asp-for="ArticleTitle" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ArticleContent">Makale İçeriği:</label>
+                    <textarea asp-for="ArticleContent" class="form-control" rows="12" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-success mt-2 float-end">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

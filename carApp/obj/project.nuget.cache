@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rhyRyyYgsBdrqhysY3sHt9AbAJSaQPDBl20QzxhKJMVScP0fCO+nfqGKST4dWSHratw2JRXBed9xThqvhPBhmw==",
+  "dgSpecHash": "8sZdb2gY892JErk52FvNP8asy8Sm6rYcrxk9a/2l+TUAbvsrU/NZVWz7r9GdMGYS66rRxQ85sTMUOpinCMaIyw==",
   "success": true,
-  "projectFilePath": "C:\\Backend Dersleri\\carApp\\carApp.csproj",
+  "projectFilePath": "C:\\BackendDersleri\\carApp\\carApp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

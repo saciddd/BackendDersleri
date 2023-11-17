@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Backend Dersleri\\carApp\\carApp.csproj",
+      "projectUniqueName": "C:\\BackendDersleri\\carApp\\carApp.csproj",
       "projectName": "carApp",
-      "projectPath": "C:\\Backend Dersleri\\carApp\\carApp.csproj",
+      "projectPath": "C:\\BackendDersleri\\carApp\\carApp.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Backend Dersleri\\carApp\\obj\\",
+      "outputPath": "C:\\BackendDersleri\\carApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"

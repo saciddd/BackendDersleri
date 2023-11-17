@@ -1,0 +1,23 @@
+﻿@model List<Article>
+@{
+    ViewData["Title"] = "Sacit Polat Blog Uygulaması";
+}
+
+<div class="text-left">
+    <h3 class="display-4">Tüm Makaleler</h3>
+    <hr />
+    <div class="list-group">
+        @foreach (var Article in Model)
+        {
+            <a href="/Article/Article/@Article.ArticleID" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">@Article.ArticleTitle</h5>
+                    <small>@Article.ArticlePublicationTime</small>
+                </div>
+                <p class="mb-1">@Article.ArticleContent</p>
+                <small>@Article.ArticleWriter</small>
+            </a>
+        }
+        </a>
+    </div>
+</div>
