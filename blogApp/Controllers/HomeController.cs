@@ -1,21 +1,27 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using blogApp.Models;
+using blogApp.Data;
+using BlogApp.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.EntityFrameworkCore;
 
 namespace blogApp.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly DataContext _context;
+    public HomeController(DataContext context) { _context = context; }
 
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
     //Ana sayfa (Index)
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var articles = await _context.Articles.Include(a => a.Category).Include(a => a.ArticleWriter).ToListAsync();
+
+            // Makaleleri view'e gönder
+            return View(articles);
     }
     //Spor Sayfası
     public IActionResult Spor()
@@ -40,18 +46,59 @@ public class HomeController : Controller
     }
     // Login işlemi
     [HttpPost]
-    public IActionResult Login(string username, string password)
+    public async Task<IActionResult> Login(LoginViewModel model)
     {
+        Console.WriteLine("Home Controller Login");
         // Kullanıcı adı veya şifre boş mu diye kontrol et, hata ver, sayfayı yenile
-        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+        if (ModelState.IsValid)
         {
-            ViewBag.ErrorMessage = "Kullanıcı adı ve şifre boş olamaz!";
-            return View();
+            Console.WriteLine("Model Valid");
+            var isUser = _context.Users.FirstOrDefault(x => x.UserName == model.UserName && x.UserPassword == model.UserPassword);
+            if (isUser != null)
+            {
+
+                var userClaims = new List<Claim>();
+                userClaims.Add(new Claim(ClaimTypes.NameIdentifier, isUser.UserID.ToString()));
+                userClaims.Add(new Claim(ClaimTypes.Name, isUser.UserName ?? ""));
+                if (isUser.UserName == "sacit")
+                {
+                    userClaims.Add(new Claim(ClaimTypes.Role, "admin"));
+                }
+
+                var claimsIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true
+                };
+
+                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+                await HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity),
+                    authProperties);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Kullınıcı adı veya şifresi hatalı!");
+            }
         }
+        else
+        {
+            Console.WriteLine("Model Hatalı geliyor");
+            ModelState.AddModelError("", "Kullınıcı adı veya şifresi hatalı!");
+        }
+        return View(model);
+    }
 
-        // Giriş işlemleri burada gerçekleştirilir (örneğin, veritabanı kontrolü)
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-        // Başarılı giriş durumunda başka bir sayfaya yönlendirme yapabilirsiniz
+        // Opsiyonel: Diğer oturum yönetimi işlemlerini de burada gerçekleştirebilirsiniz.
+
         return RedirectToAction("Index", "Home");
     }
 

@@ -1,5 +1,6 @@
 using blogApp.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,9 @@ builder.Services.AddDbContext<DataContext>(options => {
     var config = builder.Configuration;
     var connectionString = config.GetConnectionString("database");
     options.UseSqlite(connectionString);});
+
+// Login sistemi için önemli, çerezleri saklıyor sanırım :)
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
 var app = builder.Build();
 
@@ -25,7 +29,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

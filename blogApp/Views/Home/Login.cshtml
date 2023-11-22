@@ -1,4 +1,6 @@
-@model User
+@using BlogApp.Models
+@model LoginViewModel
+
 <div class="text-center">
     <h1 class="display-4">Giriş Yap</h1>
     <hr />
@@ -12,14 +14,17 @@
                 </div>
                 <div class="card-body">
                     <!-- Giriş Formu -->
-                    <form asp-controller="User" asp-action="Login" method="post" id="myForm">
+                    <form action="Login" method="post" id="LoginForm">
+                        <div asp-validation-summary="All" class="text-danger"></div>
                         <div class="form-group">
-                            <label asp-for="UserName">Kullanıcı Adı:</label>
+                            <label >Kullanıcı Adı:</label>
                             <input asp-for="UserName" class="form-control" required>
+                            <span asp-validation-for="UserName" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="UserPassword">Şifre:</label>
                             <input asp-for="UserPassword" class="form-control" type="password" required>
+                            <span asp-validation-for="UserPassword" class="text-danger"></span>
                         </div>
                         <button type="submit" class="btn btn-primary mt-2">Giriş Yap</button>
                     </form>
@@ -30,27 +35,3 @@
         </div>
     </div>
 </div>
-<!--
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-<script>
-    $(document).ready(function () {
-        $("#myForm").submit(function (event) {
-            event.preventDefault();
-
-            $.ajax({
-                url: "/User/Login",
-                type: "POST",
-                data: $(this).serialize(),
-                success: function () {
-                    // Başarılı durum
-                },
-                error: function (xhr, textStatus, errorThrown) {
-                    // Hata durumu
-                    alert("Sunucu hatası: " + errorThrown);
-                }
-            });
-        });
-    });
-</script>
--->

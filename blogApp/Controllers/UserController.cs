@@ -3,8 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using blogApp.Models;
 using blogApp.Data;
+using BlogApp.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace blogApp.Controllers
 {
@@ -25,42 +28,48 @@ namespace blogApp.Controllers
             return RedirectToAction("Success");
         }
         [HttpPost]
-        public async Task<IActionResult> Login(User model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
+Console.WriteLine("İşlem başladı");
             if (ModelState.IsValid)
             {
-                // Kullanıcı adı ve şifre kontrolü
-                var user = await _context.Users
-                    .Where(u => u.UserName == model.UserName && u.UserPassword == model.UserPassword)
-                    .FirstOrDefaultAsync();
-
-                if (user != null)
+                var isUser = _context.Users.FirstOrDefault(x => x.UserName == model.UserName && x.UserPassword == model.UserPassword);
+                if (isUser != null)
                 {
-                    // Ana sayfaya yönlendirme
+
+                    var userClaims = new List<Claim>();
+                    userClaims.Add(new Claim(ClaimTypes.NameIdentifier, isUser.UserID.ToString()));
+                    userClaims.Add(new Claim(ClaimTypes.Name, isUser.UserName ?? ""));
+                    if (isUser.UserName == "sacit")
+                    {
+                        userClaims.Add(new Claim(ClaimTypes.Role, "admin"));
+                    }
+
+                    var claimsIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                    var authProperties = new AuthenticationProperties
+                    {
+                        IsPersistent = true
+                    };
+
+                    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+                    await HttpContext.SignInAsync(
+                        CookieAuthenticationDefaults.AuthenticationScheme,
+                        new ClaimsPrincipal(claimsIdentity),
+                        authProperties);
                     return RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Kullanıcı adı veya şifre hatalı");
-                }
-                return RedirectToAction("Index", "Home");
             }
-            return View("Error", "Home");
+            else
+            {
+                ModelState.AddModelError("", "Kullınıcı adı veya şifresi hatalı!");
+            }
+            return View(model);
         }
-        public IActionResult ShowError(string errorMessage)
-        {
-            return View("Error", errorMessage);
-        }
-
-
-
         public IActionResult Success()
         {
             return View();
-        }
-        public IActionResult Error()
-        {
-            return View("Error!");
         }
     }
 }

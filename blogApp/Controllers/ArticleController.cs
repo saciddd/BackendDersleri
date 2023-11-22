@@ -51,6 +51,7 @@ namespace blogApp.Controllers
             // Makaleleri view'e gönder
             return View(articles);
         }
+        
         [HttpGet]
         public IActionResult Article(int? id)
         {
@@ -65,6 +66,24 @@ namespace blogApp.Controllers
             }
 
             return View("Article", article);
+        }
+        public async Task<IActionResult> Category(int id)
+        {
+            // Veritabanındaki belirli bir kategoriye ait makaleleri al
+            var articlesInCategory = await _context.Articles
+                .Include(a => a.Category)
+                .Include(a => a.ArticleWriter)
+                .Where(a => a.ArticleCategoryID == id)
+                .ToListAsync();
+
+            // Kategori bulunamazsa NotFound döndür
+            if (!articlesInCategory.Any())
+            {
+                return NotFound();
+            }
+
+            // Makaleleri view'e gönder
+            return View(articlesInCategory);
         }
         public IActionResult Error()
         {
