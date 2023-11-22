@@ -141,6 +141,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\BackendDersleri\\blogApp\\wwwroot\\img\\765c1776-e771-49bd-8596-f6b6ab0713ae.jpg",
+      "PackagePath": "staticwebassets\\img\\765c1776-e771-49bd-8596-f6b6ab0713ae.jpg"
+    },
+    {
       "Id": "C:\\BackendDersleri\\blogApp\\wwwroot\\img\\akif.jpeg",
       "PackagePath": "staticwebassets\\img\\akif.jpeg"
     },

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using blogApp.Models;
 using blogApp.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 
 namespace blogApp.Controllers
@@ -24,7 +25,7 @@ namespace blogApp.Controllers
                 var fileName = Guid.NewGuid().ToString() + Path.GetExtension(fileInput.FileName);
 
                 // wwwroot/img klasörüne dosyayı kaydet
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img", fileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", fileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     await fileInput.CopyToAsync(fileStream);
@@ -33,14 +34,22 @@ namespace blogApp.Controllers
                 // model.ArticleImage'e dosya adını ata
                 model.ArticleImage = fileName;
             }
-            //Hazır veriler ************ Değişecek
-            model.ArticleWriterID = 1;
-            model.ArticlePublicationTime = DateTime.Now;
-            model.ArticleCategoryID = 1;
+            // Giriş yapan kullanıcının ID'sini al
+            var loggedInUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (!string.IsNullOrEmpty(loggedInUserId) && int.TryParse(loggedInUserId, out var userId))
+            {
+                model.ArticleWriterID = userId;
+            }
+            else
+            {
+                model.ArticleWriterID = 1;
+            }
+                model.ArticlePublicationTime = DateTime.Now;
+                model.ArticleCategoryID = 1;
 
-            _context.Articles.Add(model);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Archive");
+                _context.Articles.Add(model);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Archive");
         }
         //Arşiv
         public async Task<IActionResult> Archive()
@@ -51,7 +60,7 @@ namespace blogApp.Controllers
             // Makaleleri view'e gönder
             return View(articles);
         }
-        
+
         [HttpGet]
         public IActionResult Article(int? id)
         {

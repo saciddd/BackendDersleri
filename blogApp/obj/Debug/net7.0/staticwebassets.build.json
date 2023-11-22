@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "i/5NSAFfOcdUEzN8GjvLW6XvzDtcD+eDjgwJSUca6c8=",
+  "Hash": "JQJvAM6zQ47hsv1ctRh81wEaiJzsub2ahy/iK90WGBY=",
   "Source": "blogApp",
   "BasePath": "_content/blogApp",
   "Mode": "Default",
@@ -627,6 +627,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\BackendDersleri\\blogApp\\wwwroot\\img\\765c1776-e771-49bd-8596-f6b6ab0713ae.jpg",
+      "SourceId": "blogApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\BackendDersleri\\blogApp\\wwwroot\\",
+      "BasePath": "_content/blogApp",
+      "RelativePath": "img/765c1776-e771-49bd-8596-f6b6ab0713ae.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\765c1776-e771-49bd-8596-f6b6ab0713ae.jpg"
     },
     {
       "Identity": "C:\\BackendDersleri\\blogApp\\wwwroot\\img\\akif.jpeg",

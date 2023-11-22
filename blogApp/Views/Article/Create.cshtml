@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
             <!-- Giriş Formu -->
-            <form asp-controller="Article" asp-action="Create" method="post">
+            <form asp-controller="Article" asp-action="Create" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="fileInput">Kapak Fotoğrafı Seç:</label>
                     <input type="file" name="fileInput" id="fileInput" accept="image/*">

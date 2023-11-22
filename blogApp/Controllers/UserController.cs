@@ -30,7 +30,7 @@ namespace blogApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-Console.WriteLine("İşlem başladı");
+            Console.WriteLine("İşlem başladı");
             if (ModelState.IsValid)
             {
                 var isUser = _context.Users.FirstOrDefault(x => x.UserName == model.UserName && x.UserPassword == model.UserPassword);
